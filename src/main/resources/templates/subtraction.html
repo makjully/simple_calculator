@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<h4>For getting subtraction put values 'a' and 'b' below:</h4>
+<form th:action="@{/calc/subtr/result}" method="get">
+    <label>
+        <input type="text" name="a" placeholder="a">
+    </label>
+    <label>
+        <input type="text" name="b" placeholder="b">
+    </label>
+    <input type="submit">
+</form>
+<div th:if="${result != null}">
+    <p>Result of (<span th:text="${param.a}"></span> - <span th:text="${param.b}"></span>) =
+        <span th:text="${result}"></span></p>
+</div>
+</body>
+</html>
