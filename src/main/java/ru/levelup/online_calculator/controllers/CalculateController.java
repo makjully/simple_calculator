@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.exceptions.TemplateInputException;
 import ru.levelup.online_calculator.services.CalcOperation;
 
 @Controller
@@ -62,7 +63,11 @@ public class CalculateController {
     @RequestMapping("division/result")
     public String div(@RequestParam("a") double a, @RequestParam("b") double b,
                       Model model) {
-        model.addAttribute("result", service.div(a, b));
+        try {
+            model.addAttribute("result", service.div(a, b));
+        } catch (TemplateInputException e) {
+            e.printStackTrace();
+        }
         return "division";
     }
 }
